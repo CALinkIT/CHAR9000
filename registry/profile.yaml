@@ -1,0 +1,25 @@
+# CHAR9000 hardware/software profile (documentation; scripts\install.ps1 applies it). No secrets here.
+platform: {os: "Windows 11", docker: "Docker Desktop (WSL2 backend)", wsl_memory: 40GB}
+hardware: {gpu: "NVIDIA GeForce RTX 4090", vram_gb: 24, ram_gb: 128}
+ollama:  # native Windows app, user environment variables
+  env: {OLLAMA_MAX_LOADED_MODELS: 2, OLLAMA_NUM_PARALLEL: 2, OLLAMA_KEEP_ALIVE: 5m, OLLAMA_FLASH_ATTENTION: 1,
+        OLLAMA_KV_CACHE_TYPE: q8_0, OLLAMA_CONTEXT_LENGTH: 16384}
+  models:
+    - {name: "CHAR9000:latest", base: "qwen3.6:27b", gb: 17, use: "personality - default chat"}
+    - {name: "qwen3.6:27b",       gb: 17,  use: "agents (CrewAI, Pydantic AI, n8n)"}
+    - {name: "gpt-oss:20b",       gb: 13,  use: "fast general"}
+    - {name: "qwen2.5-coder:14b", gb: 9,   use: "code / build mode"}
+    - {name: "llama3.2-vision",   gb: 7.8, use: "look at photos and screenshots"}
+    - {name: "deepseek-r1:8b",    gb: 5.2, use: "shows its reasoning - good for learning"}
+    - {name: "gemma3",            gb: 3.4, use: "light tasks"}
+    - {name: "nomic-embed-text",  gb: 0.3, use: "embeddings for the knowledge base"}
+    - {name: "gpt-oss:120b",      gb: 65,  use: "optional (-WithBigModel); runs partly in RAM, slow"}
+services:   # all bound to 127.0.0.1
+  open-webui: 3000
+  n8n: 5678
+  crewai: 8000
+  pydantic-ai: 8001
+  qdrant: 6333
+  ollama: 11434
+  comfyui: 8188   # optional, ComfyUI portable for Windows
+knowledge_base: {folder: "data\\files", collection: my_documents, formats: [pdf, docx, doc, txt, md]}

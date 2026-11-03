@@ -1,0 +1,7 @@
+crewai[litellm]
+json-repair>=0.60.1
+fastapi
+uvicorn[standard]
+httpx
+qdrant-client
+psycopg2-binary

@@ -1,0 +1,7 @@
+# CHAR9000 agency state — only the owner changes the level (see charter §3).
+current_level: 1
+current_level_name: Helper
+since: 2026-11-03
+review: "whenever she wants more help; suggest a review after ~30 days of use"
+history:
+  - {date: 2026-11-03, level: 1, by: "Charles (Cal) Link", note: "CHAR9000 created as a personal friend/assistant; starts at Helper"}

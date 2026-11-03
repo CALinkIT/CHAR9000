@@ -1,0 +1,4 @@
+pydantic-ai[openai]
+fastapi
+uvicorn[standard]
+httpx
